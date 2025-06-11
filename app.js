@@ -7,6 +7,7 @@ const authRoutes = require("./src/modules/auth/auth.routes")
 const usersRoutes = require("./src/modules/users/users.routes")
 const categoriesRoutes = require("./src/modules/categories/categories.routes")
 const productsRoutes = require("./src/modules/products/products.routes")
+const ordersRoutes = require("./src/modules/orders/orders.routes")
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use("/auth" , authRoutes);
 app.use("/users" , usersRoutes);
 app.use("/categories" , categoriesRoutes);
 app.use("/products" , productsRoutes);
+app.use("/orders" , ordersRoutes);
 
 // Not-Found Page
 app.use((req,res) => {
