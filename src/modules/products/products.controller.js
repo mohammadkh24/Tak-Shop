@@ -164,4 +164,25 @@ exports.update = async (req, res, next) => {
   }
 };
 
-exports.remove = async (req, res, next) => {};
+exports.remove = async (req, res, next) => {
+    try {
+        const { productId } = req.params;
+    
+        const removedProduct = await Product.findOneAndDelete({
+          _id: productId,
+        });
+    
+        if (!removedProduct) {
+          return res.status(404).json({
+            message: "Product not found",
+          });
+        }
+    
+        return res.status(404).json({
+          message: "Product removed successfully",
+          product: productId,
+        });
+      } catch (error) {
+        next(error);
+      }
+};
