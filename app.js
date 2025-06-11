@@ -8,6 +8,7 @@ const usersRoutes = require("./src/modules/users/users.routes")
 const categoriesRoutes = require("./src/modules/categories/categories.routes")
 const productsRoutes = require("./src/modules/products/products.routes")
 const ordersRoutes = require("./src/modules/orders/orders.routes")
+const commnetsRoutes = require("./src/modules/comments/comments.routes")
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use("/users" , usersRoutes);
 app.use("/categories" , categoriesRoutes);
 app.use("/products" , productsRoutes);
 app.use("/orders" , ordersRoutes);
+app.use("/comments" , commnetsRoutes);
 
 // Not-Found Page
 app.use((req,res) => {

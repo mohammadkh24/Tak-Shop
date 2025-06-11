@@ -1,6 +1,5 @@
 const Comment = require("../../models/Comment");
 
-// POST /comments
 exports.createComment = async (req, res) => {
   try {
     const { productId, body, rating } = req.body;
@@ -25,24 +24,35 @@ exports.createComment = async (req, res) => {
   }
 };
 
-// GET /comments/:productId
 exports.getCommentsByProduct = async (req, res) => {
-  try {
-    const { productId } = req.params;
+    try {
+      const { productId } = req.params;
+      const page = parseInt(req.query.page) || 1;
+      const limit = parseInt(req.query.limit) || 10;
+      const skip = (page - 1) * limit;
+  
+      const comments = await Comment.find({ productId })
+        .populate('userId', 'username avatar')
+        .sort({ createdAt: -1 })
+        .skip(skip)
+        .limit(limit);
+  
+      const total = await Comment.countDocuments({ productId });
+  
+      res.status(200).json({
+        comments,
+        pagination: {
+          total,
+          page,
+          totalPages: Math.ceil(total / limit),
+        },
+      });
+    } catch (err) {
+      res.status(500).json({ message: 'Failed to fetch comments', error: err.message });
+    }
+  };
+  
 
-    const comments = await Comment.find({ productId })
-      .populate("userId", "username avatar")
-      .sort({ createdAt: -1 });
-
-    res.status(200).json({ comments });
-  } catch (err) {
-    res
-      .status(500)
-      .json({ message: "Failed to fetch comments", error: err.message });
-  }
-};
-
-// DELETE /comments/:commentId
 exports.deleteComment = async (req, res) => {
   try {
     const { commentId } = req.params;
