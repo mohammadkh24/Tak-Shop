@@ -6,14 +6,14 @@ exports.getAll = async (req, res, next) => {
   try {
     let { page = 1, limit = 10 } = req.query;
 
-    const users = await Category.find({})
+    const categories = await Category.find({})
       .skip((page - 1) * limit)
       .limit(limit);
 
     const totalCategories = await Category.countDocuments();
 
     return res.status(200).json({
-      users,
+      categories,
       pagination: createPaginationData(page, limit, totalCategories, "Categories"),
     });
   } catch (error) {
