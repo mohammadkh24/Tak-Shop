@@ -23,7 +23,7 @@ router
 router
   .route("/:productId")
   .get(controller.getOne)
-  .post(
+  .patch(
     auth,
     isAdmin,
     upload.single("image"),
