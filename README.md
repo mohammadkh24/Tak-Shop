@@ -17,22 +17,10 @@ It supports user authentication, product and order management, and integrates wi
 
 ---
 
-## 📂 Project Structure
-
-takshop/
-├── models/               # Mongoose schemas
-├── modules/              # Orders, users, products
-├── services/             # Payment service (Zarinpal)
-├── middlewares/          # Auth & Role checks
-├── routes/               # Express route handlers
-└── index.js              # App entry point
-
----
-
 ## 🧪 API Documentation
 
 Swagger UI is available at:  
-http://localhost:<PORT>/api-docs
+[https://tak-shop.onrender.com/doc/]
 
 All endpoints are documented, including request/response samples.
 
@@ -52,7 +40,7 @@ All endpoints are documented, including request/response samples.
 ## 🧰 Setup Instructions
 
 1. **Clone the repo**  
-   git clone https://github.com/your-username/takshop.git  
+   git clone https://github.com/mohammadkh24/Tak-Shop
    cd takshop
 
 2. **Install dependencies**  
@@ -68,10 +56,20 @@ All endpoints are documented, including request/response samples.
 
 ## 📦 Example `.env`
 
-PORT=3000  
-MONGO_URI=mongodb://localhost:27017/takshop  
-JWT_SECRET=your_jwt_secret  
-ZARINPAL_MERCHANT_ID=your_zarinpal_merchant_id
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/ToranjRefactor
+
+JWT_SECRET=d9bd9dc9-0073-4ab7-b1cb-1579e73e66a2
+
+Redis_URI= redis://localhost:6379	
+
+# ZarinPal
+ZARINPAL_MERCHANT_ID=cf74046c-b2bd-41b1-962f-a705af51a62c
+ZARINPAL_PAYMENT_CALLBACK_URL=http://localhost:5000/orders/checkout/verify
+ZARINPAL_PAYMENT_BASE_URL=https://sandbox.zarinpal.com/pg/StartPay/
+ZARINPAL_API_BASE_URL=https://sandbox.zarinpal.com/pg/v4/payment
+
+NODE_ENV= development
 
 ---
 
@@ -82,13 +80,7 @@ to discuss what you would like to change.
 
 ---
 
-## 📜 License
-
-MIT
-
----
-
 ## 🧠 Author
 
-**Created by:** [Your Name or GitHub Username]  
+**Created by:** [mohammadkh24]  
 💬 Feedback & stars are appreciated!
