@@ -45,18 +45,20 @@ All endpoints are documented, including request/response samples.
 
 ## 🧰 Setup Instructions
 
-1. **Clone the repo**  
-   git clone https://github.com/mohammadkh24/Tak-Shop
-   cd takshop
+    ```bash
 
-2. **Install dependencies**  
-   npm install
+    1. **Clone the repo**  
+    git clone https://github.com/mohammadkh24/Tak-Shop
+    cd takshop
 
-3. **Setup environment**  
+    2. **Install dependencies**  
+      npm install
+
+   3. **Setup environment**  
    Create a `.env` file based on `.env.example` and configure your MongoDB, JWT, and Zarinpal credentials.
 
-4. **Start the server**  
-   npm run dev
+    4. **Start the server**  
+    npm run dev
 
 ---
 
