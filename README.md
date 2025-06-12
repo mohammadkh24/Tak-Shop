@@ -1,3 +1,9 @@
+[![Node.js](https://img.shields.io/badge/Node.js-18.x-green.svg)](https://nodejs.org/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-%20%F0%9F%92%BE-green)](https://mongodb.com)
+[![Redis](https://img.shields.io/badge/Redis-%E2%9A%AB-red)](https://redis.io/)
+[![JWT](https://img.shields.io/badge/JWT-secure-yellow)](https://jwt.io)
+[![Swagger](https://img.shields.io/badge/Swagger-UI-blue)](http://localhost:3000/api-docs)
+
 # 🛍️ TakShop
 
 TakShop is a minimalist and extensible **e-commerce backend** built with **Node.js**, **Express.js**, and **MongoDB**.  
@@ -20,7 +26,7 @@ It supports user authentication, product and order management, and integrates wi
 ## 🧪 API Documentation
 
 Swagger UI is available at:  
-[https://tak-shop.onrender.com/doc/]
+Visit Swagger docs at: [https://tak-shop.onrender.com/doc/](https://tak-shop.onrender.com/doc/)
 
 All endpoints are documented, including request/response samples.
 
@@ -56,20 +62,21 @@ All endpoints are documented, including request/response samples.
 
 ## 📦 Example `.env`
 
-PORT=5000
-MONGO_URI=mongodb://localhost:27017/ToranjRefactor
+    ```.env
+    PORT=5000
+    MONGO_URI=mongodb://localhost:27017/ToranjRefactor
 
-JWT_SECRET=d9bd9dc9-0073-4ab7-b1cb-1579e73e66a2
+    JWT_SECRET=d9bd9dc9-0073-4ab7-b1cb-1579e73e66a2
 
-Redis_URI= redis://localhost:6379	
+    Redis_URI= redis://localhost:6379	
 
-# ZarinPal
-ZARINPAL_MERCHANT_ID=cf74046c-b2bd-41b1-962f-a705af51a62c
-ZARINPAL_PAYMENT_CALLBACK_URL=http://localhost:5000/orders/checkout/verify
-ZARINPAL_PAYMENT_BASE_URL=https://sandbox.zarinpal.com/pg/StartPay/
-ZARINPAL_API_BASE_URL=https://sandbox.zarinpal.com/pg/v4/payment
+    # ZarinPal
+    ZARINPAL_MERCHANT_ID=cf74046c-b2bd-41b1-962f-a705af51a62c
+    ZARINPAL_PAYMENT_CALLBACK_URL=http://localhost:5000/orders/checkout/verify
+    ZARINPAL_PAYMENT_BASE_URL=https://sandbox.zarinpal.com/pg/StartPay/
+    ZARINPAL_API_BASE_URL=https://sandbox.zarinpal.com/pg/v4/payment
 
-NODE_ENV= development
+    NODE_ENV= development
 
 ---
 
