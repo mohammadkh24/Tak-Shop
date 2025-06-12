@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:5000"
+      "url": "https://tak-shop.onrender.com"
     }
   ],
   "tags": [
@@ -30,6 +30,10 @@
     {
       "name": "Orders",
       "description": "All routes about orders"
+    },
+    {
+      "name": "Comments",
+      "description": "All routes about comments"
     }
   ],
   "paths": {
@@ -848,7 +852,133 @@
           }
         }
       }
-    }
+    },
+    "/comments": {
+        "post": {
+          "tags": ["Comments"],
+          "summary": "Create a comment on a product",
+          "security": [{ "bearerAuth": [] }],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "productId": {
+                      "type": "string",
+                      "example": "665f20a6f447b3a3f91a9870"
+                    },
+                    "body": {
+                      "type": "string",
+                      "example": "This is a great product!"
+                    },
+                    "rating": {
+                      "type": "number",
+                      "example": 4.5,
+                      "minimum": 1,
+                      "maximum": 5
+                    }
+                  },
+                  "required": ["productId", "body", "rating"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Comment successfully created"
+            },
+            "400": {
+              "description": "Validation error"
+            }
+          }
+        },
+        "get": {
+          "tags": ["Comments"],
+          "summary": "Get list of comments for a product (with pagination)",
+          "parameters": [
+            {
+              "name": "productId",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "page",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "default": 1
+              }
+            },
+            {
+              "name": "limit",
+              "in": "query",
+              "schema": {
+                "type": "integer",
+                "default": 10
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Comments retrieved successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "comments": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/Comment"
+                        }
+                      },
+                      "pagination": {
+                        "type": "object",
+                        "properties": {
+                          "total": { "type": "integer" },
+                          "page": { "type": "integer" },
+                          "limit": { "type": "integer" },
+                          "totalPages": { "type": "integer" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/comments/{id}": {
+        "delete": {
+          "tags": ["Comments"],
+          "summary": "Delete a comment by ID",
+          "security": [{ "bearerAuth": [] }],
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Comment deleted successfully"
+            },
+            "404": {
+              "description": "Comment not found"
+            }
+          }
+        }
+      }
 },
 "components": {
     "securitySchemes": {
@@ -981,6 +1111,36 @@
           },
           "createdAt": { "type": "string", "format": "date-time" },
           "updatedAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "Comment": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string", "example": "665f20a6f447b3a3f91a9870" },
+          "userId": {
+            "type": "string",
+            "example": "665f20a6f447b3a3f91a9871"
+          },
+          "productId": {
+            "type": "string",
+            "example": "665f20a6f447b3a3f91a9872"
+          },
+          "body": {
+            "type": "string",
+            "example": "Very nice product!"
+          },
+          "rating": {
+            "type": "number",
+            "example": 5
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
         }
       }
     }
